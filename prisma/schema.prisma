@@ -1,0 +1,54 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URI")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int        @id @default(autoincrement())
+  name        String?
+  email       String?       @unique
+  password    String?
+  Departments Departments[]
+}
+
+model Departments {
+  id    Int @id @default(autoincrement())
+  email String
+  code  Int
+  name  String
+  SubCats SubCats[]
+
+  user User @relation(fields: [email], references: [email], onDelete: Cascade, onUpdate: Cascade)
+  @@unique([email, code])
+}
+
+model SubCats {
+  id    Int @id @default(autoincrement())
+  deptId Int
+  name  String
+  Divs Divs[]
+
+  departments Departments @relation(fields: [deptId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model Divs {
+  id    Int @id @default(autoincrement())
+  subCatId Int
+  name  String
+  Batchs Batchs[]
+
+  subCats SubCats @relation(fields: [subCatId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model Batchs {
+  id    Int @id @default(autoincrement())
+  divId Int
+  name  String
+
+  divs Divs @relation(fields: [divId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+

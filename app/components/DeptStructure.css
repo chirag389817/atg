@@ -1,0 +1,97 @@
+:root {
+    --blue: rgb(147, 197, 253);
+}
+
+.structure li {
+    position: relative;
+    margin-left: 2rem;
+}
+
+.structure input {
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.5rem;
+    width: 7rem;
+}
+
+.title {
+    display: inline-block;
+    padding: 0.125rem 0;
+}
+
+.structure summary:hover input,
+.structure input:focus {
+    outline: 1px solid var(--blue);
+}
+
+.structure li::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    /* left: -1.375rem; */
+    left: -1.3rem;
+    width: 1.2rem;
+    height: 1.125rem;
+    border-left: 2px solid var(--blue);
+    border-bottom: 2px solid var(--blue);
+}
+
+.structure li::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    /* left: -1.375em; */
+    left: -1.3rem;
+    width: 1.2rem;
+    height: 100%;
+    border-left: 2px solid var(--blue);
+}
+
+.structure li:last-child::after {
+    display: none;
+}
+
+.structure .option {
+    display: none;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.structure .option:hover {
+    background-color: rgba(147, 197, 253, 0.3);
+    cursor: pointer;
+}
+
+.structure summary:hover .option,
+.structure input:focus ~ .option {
+    display: inline-block;
+}
+
+.structure summary {
+    list-style: none;
+}
+.structure summary::-webkit-details-marker {
+    display: none;
+}
+
+.structure details > summary::before {
+    display: inline-block;
+    text-align: center;
+    width: 1.5rem;
+    content: "+";
+    margin-right: 0.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--blue);
+    cursor: pointer;
+}
+
+.structure details[open] > summary::before {
+    display: inline-block;
+    text-align: center;
+    width: 1.5rem;
+    content: "-";
+    margin-right: 0.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--blue);
+}
